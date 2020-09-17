@@ -16,7 +16,7 @@
 #define STRIDE 1
 #define PADDING 1
 #define PADDING_NUMBER 0
-
+//Following defines are used to easily switch between floating point and fixed point
 //Fixed point define
 //#define __FXP32__
 
@@ -29,7 +29,7 @@ typedef float Base_datatype;
 
 #ifdef __FXP32__
 #include <ap_fixed.h>
-typedef ap_fixed<32,3> Base_datatype;
+typedef ap_fixed<32,16> Base_datatype;
 #endif //Floating point
 
 //outputs get dumped into different file
