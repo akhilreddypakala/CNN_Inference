@@ -5,9 +5,9 @@
 #include "read_parameters.h"
 #include "convolution.h"
 #include <iostream>
+#include <fstream>
+
 using namespace std;
-
-
 
 Base_datatype weights[OUTPUT_CHANNEL][INPUT_CHANNEL][KERNEL_WIDTH*KERNEL_HEIGHT];
 Base_datatype bias[OUTPUT_CHANNEL]; 
@@ -40,11 +40,21 @@ int main () {
 	}
 	Read_Parameters(pixel_ip, weights, bias); // Read all the parameters
 
-	cout << "pixel last input = " << bias[127] << endl;
+	//cout << "pixel last input = " << bias[127] << endl;
     //Convolution of one layer. ReLU function included 
 	convolution(pixel_ip, weights, bias, feature_map);	
 
-	//cout << feature_map[127][111][111] <<endl;
+	#ifdef __DUMP_OUTPUT__
+	ofstream fout;
+	fout.open("../data/generated_output.dat");
+	for (int i=0; i<OUTPUT_CHANNEL;i++){
+		for (int k =0; k<OUTPUT_HEIGHT;k++){
+			for (int q =0;q<OUTPUT_WIDTH;q++){
+				fout << feature_map[i][k][q] <<endl;		
+			}
+		}
+	}
+	#endif
 
 	return 0;
 

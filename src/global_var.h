@@ -18,16 +18,20 @@
 #define PADDING_NUMBER 0
 
 //Fixed point define
-#define __FXP32__
+//#define __FXP32__
 
 //Floating point define
-//#define __FTP32__
+#define __FTP32__
 
-#ifdef __FXP32__
+#ifdef __FTP32__
 typedef float Base_datatype;
 #endif // Fixed point
 
-#ifdef __FTP32__
+#ifdef __FXP32__
 #include <ap_fixed.h>
 typedef ap_fixed<32,3> Base_datatype;
 #endif //Floating point
+
+//outputs get dumped into different file
+#define __DUMP_OUTPUT__
+
