@@ -44,7 +44,7 @@ int main () {
     //Convolution of one layer. ReLU function included 
 	convolution(pixel_ip, weights, bias, feature_map);	
 
-	//cout << feature_map[127][111][111] <<endl;
+	cout << feature_map[127][111][111] <<endl;
 
 return 0;
 

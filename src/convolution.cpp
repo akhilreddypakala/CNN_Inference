@@ -38,23 +38,15 @@ void convolution(Base_datatype pixel_ip_after_padding[INPUT_CHANNEL][INPUT_WIDTH
 			}
 		}
 	}
+	//cout << feature_map[127][111][111]<<endl;
 	// Add Bias and ReLu function	
 	for (int i=0;i<OUTPUT_CHANNEL; i++){
-		for (int j=0; j<INPUT_CHANNEL; j++){
 			for (int k = 0; k<INPUT_HEIGHT+2*PADDING-KERNEL_HEIGHT+1; k= k+STRIDE){
 				for (int q = 0; q<INPUT_WIDTH+2*PADDING-KERNEL_WIDTH+1; q= q+STRIDE){
-					if (i == 127 && j == 63 && k == 111 && q==111){
-						cout << feature_map[127][111][111]<<endl;
-					}
 					feature_map[i][k][q] += bias[i];
-					if (i == 127 && j == 63 && k == 111 && q==111){
-						cout << feature_map[127][111][111]<<endl;
-					}
-					if (feature_map[i][k][q] < 0)
-						feature_map[i][k][q] = 0;
 				}
 			}
-		} // Input Channel
+		 // Input Channel
 
 	} //OUPUT_CHANNEL
 
@@ -68,6 +60,9 @@ Base_datatype dot_product (Base_datatype res_wei[OUTPUT_CHANNEL][INPUT_CHANNEL][
 	for (int i = 0; i< 3; i++){
 		for (int j= 0; j< 3;j++){
 			one_conv_op += pixel_ip_after_padding[inp_ch][i+row_number][j+col_number] * res_wei[op_ch][inp_ch][i][j];
+			if(op_ch == 127 && inp_ch == 63 && row_number == 111 && col_number == 111){
+				cout << pixel_ip_after_padding[inp_ch][i+row_number][j+col_number] << "," << res_wei[op_ch][inp_ch][i][j] << "," << one_conv_op <<endl;
+			}
 		}
 	}
 
