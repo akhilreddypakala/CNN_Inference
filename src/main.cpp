@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-Base_datatype weights[OUTPUT_CHANNEL][INPUT_CHANNEL*KERNEL_WIDTH*KERNEL_HEIGHT];
+Base_datatype weights[OUTPUT_CHANNEL][INPUT_CHANNEL][KERNEL_WIDTH*KERNEL_HEIGHT];
 Base_datatype bias[OUTPUT_CHANNEL]; 
 Base_datatype pixel_ip[INPUT_CHANNEL][INPUT_WIDTH+2*PADDING][INPUT_HEIGHT + 2*PADDING];
 Base_datatype feature_map[OUTPUT_CHANNEL][OUTPUT_WIDTH][OUTPUT_HEIGHT];
@@ -17,8 +17,8 @@ Base_datatype feature_map[OUTPUT_CHANNEL][OUTPUT_WIDTH][OUTPUT_HEIGHT];
 int main () {
 
 	for (int i=0; i<OUTPUT_CHANNEL; i++){
-		for (int k = 0; k<INPUT_HEIGHT+2*PADDING-KERNEL_HEIGHT+1; k= k+STRIDE){
-			for (int q = 0; q<INPUT_WIDTH+2*PADDING-KERNEL_WIDTH+1; q= q+STRIDE){
+		for (int k = 0; k<OUTPUT_HEIGHT; k++){
+			for (int q = 0; q<OUTPUT_WIDTH; q++){
 				feature_map[i][k][q] = 0;
 			}
 		}
@@ -40,12 +40,12 @@ int main () {
 	}
 	Read_Parameters(pixel_ip, weights, bias); // Read all the parameters
 
-	cout << "pixel last input = " << bias[63] << endl;
+	cout << "pixel last input = " << bias[127] << endl;
     //Convolution of one layer. ReLU function included 
 	convolution(pixel_ip, weights, bias, feature_map);	
 
-	cout << feature_map[127][111][111] <<endl;
+	//cout << feature_map[127][111][111] <<endl;
 
-return 0;
+	return 0;
 
 }

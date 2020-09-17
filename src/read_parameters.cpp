@@ -5,7 +5,7 @@
 #include "global_var.h"
 using namespace std;
 
-void Read_Parameters(Base_datatype pixel_ip[INPUT_CHANNEL][INPUT_WIDTH+2*PADDING][INPUT_HEIGHT+2*PADDING], Base_datatype weights[OUTPUT_CHANNEL] [INPUT_CHANNEL * KERNEL_WIDTH * KERNEL_HEIGHT], Base_datatype bias[OUTPUT_CHANNEL])
+void Read_Parameters(Base_datatype pixel_ip[INPUT_CHANNEL][INPUT_WIDTH+2*PADDING][INPUT_HEIGHT+2*PADDING], Base_datatype weights[OUTPUT_CHANNEL][INPUT_CHANNEL][KERNEL_WIDTH*KERNEL_HEIGHT], Base_datatype bias[OUTPUT_CHANNEL])
 {
    // Read inputs from input.dat file
 	float test_input;
@@ -33,10 +33,14 @@ void Read_Parameters(Base_datatype pixel_ip[INPUT_CHANNEL][INPUT_WIDTH+2*PADDING
 		for (int k =0; k<INPUT_CHANNEL; k++){
 			for (int j=0; j<KERNEL_WIDTH*KERNEL_HEIGHT; j++){
 					f_wei >> test_weight >> ws;
-					weights[i][k*(KERNEL_WIDTH*KERNEL_HEIGHT) + j] = test_weight;
+					weights[i][k][j] = test_weight;
 			}
 		}
-	} 
+	}
+
+//	for (int i=0; i<9; i++){
+//		cout << weights[127][63][i] << endl;
+//	} 
 // Read bias from weight file	
 	for (int i=0; i< OUTPUT_CHANNEL; i++){
 		f_wei >> test_weight >>ws;
