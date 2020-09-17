@@ -40,11 +40,11 @@ int main () {
 	}
 	Read_Parameters(pixel_ip, weights, bias); // Read all the parameters
 
-	cout << "pixel last input = " << bias[63] << endl;
+	//cout << "pixel last input = " << bias[63] << endl;
     //Convolution of one layer. ReLU function included 
 	convolution(pixel_ip, weights, bias, feature_map);	
 
-	cout << feature_map[127][111][111] <<endl;
+	//cout << feature_map[127][111][111] <<endl;
 
 return 0;
 

@@ -23,7 +23,9 @@ void Read_Parameters(Base_datatype pixel_ip[INPUT_CHANNEL][INPUT_WIDTH+2*PADDING
 		}
 	}  
  	f_inp.close();
- 	//cout << "pixel_ip = " << pixel_ip[1][1][1] <<endl;
+ 	cout << pixel_ip[63][111][111]<< " ," << pixel_ip[63][111][112]<< " ,"<< pixel_ip[63][111][113]<< endl;
+ 	cout << pixel_ip[63][112][111]<< " ," << pixel_ip[63][112][112]<< " ,"<< pixel_ip[63][112][113]<< endl;
+ 	cout << pixel_ip[63][113][111]<< " ," << pixel_ip[63][113][112]<< " ,"<< pixel_ip[63][113][113]<< endl;
 
   // Read weights from weight.dat file
 	float test_weight;
@@ -36,12 +38,15 @@ void Read_Parameters(Base_datatype pixel_ip[INPUT_CHANNEL][INPUT_WIDTH+2*PADDING
 					weights[i][k*(KERNEL_WIDTH*KERNEL_HEIGHT) + j] = test_weight;
 			}
 		}
-	} 
+	}
+
+	for (int i =0; i<9; i++) 
+		cout << "last weight = " << weights[127][567+i]<<endl;
 // Read bias from weight file	
 	for (int i=0; i< OUTPUT_CHANNEL; i++){
 		f_wei >> test_weight >>ws;
 		bias[i] = test_weight;
 	} 
  	f_wei.close();
- 	//cout << "weight = " << bias[63] <<endl;
+ 	//cout << "bias = " << bias[0] <<endl;
 } 
